@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+  
+    <!-- character Encoding	-->
+	<filter>
+		<filter-name>characterEncoding</filter-name>
+		<filter-class>util.SetChar</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<filter>
+		<filter-name>filter</filter-name>
+		<filter-class>util.LoginFilter</filter-class>
+	</filter>
+	<!-- servlet规范，不能以/*.jsp这样的结尾，写全，或者写成/app/*，这样的才行 -->
+	<filter-mapping>
+		<filter-name>filter</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+	
+	<session-config> 
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	
+	  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MainCtrl</servlet-name>
+    <servlet-class>control.MainCtrl</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Upload</servlet-name>
+    <servlet-class>control.Upload</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>MainCtrl</servlet-name>
+    <url-pattern>/daoweigou</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+</web-app>
